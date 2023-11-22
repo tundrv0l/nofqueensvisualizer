@@ -27,7 +27,7 @@ import random
     return True """
 
 
-def n_queens_solution(n, board=[], row=0):
+def n_queens_solution(n, board=[], row=0)->list:
     if row == n:
         return [board]
 
@@ -36,7 +36,7 @@ def n_queens_solution(n, board=[], row=0):
     for col in range(n):
         if all(col != c and row-r != abs(col-c) for r, c in enumerate(board)):
             for result in n_queens_solution(n, board + [col], row + 1):
-                solutions.append(result)
+                solutions.append(result) # Add the solution to the list of solutions, for 8 Queens
 
     return solutions
 
@@ -52,23 +52,31 @@ def main():
 
     done = False
 
-    game_state = [['' for _ in range(8)] for _ in range(8)]
+    game_state = [['' for _ in range(8)] for _ in range(8)] # Initialize an empty game state
 
     # update the board state with n of queens
     solutions = n_queens_solution(8)
     if solutions:
         solution = random.choice(solutions)
-        for row, col in enumerate(solution):
-            game_state[row][col] = 'Q'
+        solution_generator = (col for col in enumerate(solution)) # Generator for real time solution
+        """ for row, col in enumerate(solution):
+            game_state[row][col] = 'Q' """
 
     while not done:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 done = True
-            
+        try:
+            col, row = next(solution_generator) # Get the next queen position
+            game_state[row][col] = 'Q'
+            pygame.time.wait(500) # Wait 500 ms
+        except StopIteration:
+            pass # No more solutions
+
         chessboard.draw(screen, game_state)  # Draw the chessboard with updated game state
         pygame.display.flip()  # Update the display
-        
+        clock.tick(60)
+
     pygame.quit()
 
 if __name__=='__main__':
