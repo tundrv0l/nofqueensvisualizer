@@ -40,15 +40,16 @@ def n_queens_solution(n, board=[], row=0)->list:
 
     return solutions
 
+screen_width, screen_height = 800
 
 def main():
     pygame.init()
-    screen = pygame.display.set_mode((800, 800))
+    screen = pygame.display.set_mode((screen_width, screen_height))
 
     clock = pygame.time.Clock()
     pygame.display.set_caption("N of Queens")
 
-    chessboard = ChessBoard()  # Create an instance of the ChessBoard class
+    chessboard = ChessBoard(screen_width, screen_height)  # Create an instance of the ChessBoard class
 
     done = False
 
@@ -66,13 +67,19 @@ def main():
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 done = True
+            elif event.type == pygame.MOUSEBUTTONDOWN:
+                if chessboard.button.collidepoint(event.pos):
+                    solution = random.choice(solutions)
+                    solution_generator = (col for col in enumerate(solution))
+                    game_state = [['' for _ in range(8)] for _ in range(8)]
         try:
             col, row = next(solution_generator) # Get the next queen position
             game_state[row][col] = 'Q'
             pygame.time.wait(500) # Wait 500 ms
         except StopIteration:
             pass # No more solutions
-
+        
+        chessboard.draw_button(screen)
         chessboard.draw(screen, game_state)  # Draw the chessboard with updated game state
         pygame.display.flip()  # Update the display
         clock.tick(60)
