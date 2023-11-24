@@ -15,11 +15,11 @@ BLACK = (157, 108, 62)
 
 #---Queen container---#
 pieces = {}
-pieces["Q"] = pygame.image.load("images/bQ.png")
+pieces["Q"] = pygame.image.load("images/bQ.png") # Load the queen image
 
 class ChessBoard:
     """
-        A class that represents a chessboard. The chessboard is represented by an 8x8 grid.
+        A class that represents a chessboard. The chessboard is drawn as a 8x8 grid.
     """
 
     def __init__(self, screen_width: int, screen_height: int):
@@ -43,6 +43,11 @@ class ChessBoard:
         
         game_state: LIST
             The current game state to draw.
+        
+        Returns
+        -------
+        None
+            The board is drawn on the screen.
         """
 
         # Clear the screen
@@ -59,14 +64,55 @@ class ChessBoard:
                     piece_y = square_y - pieces['Q'].get_height() // 2  # Calculate the y-coordinate of the piece's top-left corner
                     screen.blit(pieces['Q'], (piece_x, piece_y))
 
-    def make_empty_game_state(self):
+    def make_empty_game_state(self)-> None:
+        """
+        Transfomer that makes the game state empty.
+
+        Parameters
+        ----------
+        self: SELF
+            An instance of the ChessBoard class.
+        
+        Returns
+        -------
+        None
+           The game state member is returned to a 'empty' state.
+        """
+
         self.game_state = [['' for _ in range(8)] for _ in range(8)]
 
 class MessageBox:
+    """
+        A class that represents the startup message box.
+    """
+
     def __init__(self):
+        """
+        Default constructor for the MessageBox class.
+        """
         self.root = tk.Tk()
         self.root.withdraw()  # Hide the main window
 
     def show_info(self, title, message):
+        """
+        An observer function that displays the message box.
+
+        Parameters
+        ----------
+        self: SELF
+            An instance of the MessageBox class.
+        
+        title: STRING
+            The title of the message box.
+        
+        message: STRING
+            The message to display.
+        
+        Returns
+        -------
+        None
+            The message box is displayed.
+        """
+
         messagebox.showinfo(title, message)
 
