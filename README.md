@@ -20,7 +20,7 @@ python3 main.py
 ```
 This will launch the program and a solution will generate automatically, if you would like a new solution, press the spacebar!
 
-## Reccurence
+## Recurrence
 
 The N-Queens problem is often solved using a recursive approach that relies on a recurrence relationship. The recurrence relationship defines how solutions for larger instances of the problem can be built upon solutions for smaller instances. In the context of the N-Queens problem, the recurrence relationship is formulated to find a valid placement of queens on an N×N chessboard. We use backtracking to accomplish this (or 'trying' different possibilites and undoing these possibilites depending on the integrity of the solution. 
 
