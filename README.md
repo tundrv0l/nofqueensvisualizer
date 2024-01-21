@@ -22,7 +22,7 @@ This will launch the program and a solution will generate automatically, if you 
 
 ## Recurrence
 
-The N-Queens problem is often solved using a recursive approach that relies on a recurrence relationship. The recurrence relationship defines how solutions for larger instances of the problem can be built upon solutions for smaller instances. In the context of the N-Queens problem, the recurrence relationship is formulated to find a valid placement of queens on an N×N chessboard. We use backtracking to accomplish this (or 'trying' different possibilites and undoing these possibilites depending on the integrity of the solution. 
+The N-Queens problem is often solved using a recursive approach that relies on a recurrence relationship. The recurrence relationship defines how solutions for larger instances of the problem can be built upon solutions for smaller instances. In the context of the N-Queens problem, the recurrence relationship is formulated to find a valid placement of queens on an N×N chessboard. We use backtracking to accomplish this (or 'trying' different possibilites and undoing these possibilites depending on the integrity of the solution). 
 
 1. **Base Case:**
    The base case of the recursion is reached when any particular row is reached at our designated N, i.e, a valid placement of a queen for the entire board has been found.
